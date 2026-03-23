@@ -1,0 +1,97 @@
+/* ===== ABOUT SECTION ===== */
+.about {
+  position: relative;
+}
+
+.about-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+/* Command styling */
+.about .terminal-body {
+  font-size: 0.88rem;
+}
+
+.about .terminal-line {
+  margin-bottom: 20px;
+}
+
+.about .terminal-output {
+  padding-left: 20px;
+  margin-top: 6px;
+  border-left: 2px solid rgba(0, 255, 159, 0.1);
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Stats bar */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  transition: var(--transition-normal);
+}
+
+.stat-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-green);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  font-family: var(--font-sans);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Education card */
+.education-output {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.education-output .edu-degree {
+  color: var(--accent-cyan);
+  font-weight: 500;
+}
+
+.education-output .edu-school {
+  color: var(--text-primary);
+}
+
+.education-output .edu-details {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

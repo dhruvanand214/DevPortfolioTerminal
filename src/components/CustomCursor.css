@@ -1,0 +1,87 @@
+/* Hide default cursors */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  
+  a, button, input, textarea {
+    cursor: none;
+  }
+  
+  .cursor-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    border-radius: 50%;
+  }
+
+  [data-theme="ubuntu"] .cursor-glow {
+    background: radial-gradient(circle, rgba(233, 84, 32, 0.04) 0%, transparent 60%);
+  }
+  
+  .custom-cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 1.2rem; /* Terminal block aspect ratio */
+    background-color: var(--accent-cyan);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: width 0.2s, height 0.2s, background-color 0.2s, border-radius 0.2s, opacity 0.2s;
+    mix-blend-mode: difference; /* Gives a nice inversion effect on text */
+    /* animation: blink 1s step-end infinite; */
+  }
+  
+  [data-theme="ubuntu"] .custom-cursor-dot {
+    background-color: var(--accent-orange);
+  }
+  
+  .custom-cursor-block {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--accent-cyan);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s, border-radius 0.3s;
+    border-radius: 4px; /* Slightly rounded square */
+    background-color: transparent;
+  }
+  
+  [data-theme="ubuntu"] .custom-cursor-block {
+    border-color: var(--accent-orange);
+  }
+  
+  /* Hover effects for links and buttons */
+  .custom-cursor-dot.hovered {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    animation: none;
+    mix-blend-mode: normal;
+    opacity: 0.3;
+  }
+  
+  .custom-cursor-block.hovered {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%; /* Morph into a circle */
+    background-color: rgba(0, 212, 255, 0.05); /* Very slight fill */
+  }
+  
+  [data-theme="ubuntu"] .custom-cursor-block.hovered {
+    background-color: rgba(233, 84, 32, 0.05);
+  }
+}
+
+/* Disable entirely on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor-dot, .custom-cursor-block {
+    display: none;
+  }
+}

@@ -1,0 +1,39 @@
+.matrix-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background: black;
+  cursor: pointer;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.matrix-overlay canvas {
+  display: block;
+}
+
+.matrix-exit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  padding: 24px 32px;
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+  pointer-events: none;
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="ubuntu"] .matrix-exit {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  box-shadow: 0 0 30px rgba(233, 84, 32, 0.2);
+}

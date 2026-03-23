@@ -1,0 +1,115 @@
+.global-sidebar {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 100px);
+  background: transparent;
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.global-sidebar > * {
+  pointer-events: auto;
+}
+
+.sidebar-header {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.sidebar-tree {
+  color: var(--text-secondary);
+}
+
+.tree-root {
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tree-icon {
+  font-size: 0.6rem;
+}
+
+.tree-list {
+  list-style: none;
+  padding-left: 8px;
+}
+
+.tree-list li {
+  margin-bottom: 4px;
+}
+
+.tree-list a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tree-branch {
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.tree-item-icon {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  filter: grayscale(0.5);
+}
+
+.tree-list li.active a {
+  background: rgba(0, 255, 159, 0.1);
+}
+
+.tree-list li.active .tree-label {
+  color: var(--accent-green);
+  font-weight: 500;
+}
+
+[data-theme="ubuntu"] .tree-list li.active a {
+  background: rgba(233, 84, 32, 0.1);
+}
+
+[data-theme="ubuntu"] .tree-list li.active .tree-label {
+  color: var(--accent-orange);
+}
+
+.tree-list a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+/* Hide when screen is smaller so it doesn't overlap the 1200px container */
+@media (max-width: 1400px) {
+  .global-sidebar {
+    display: none;
+  }
+}
+
+/* Shift the main content and navbar to the right when sidebar is visible */
+@media (min-width: 1401px) {
+  .fade-in-main {
+    padding-left: 240px;
+  }
+  .navbar {
+    padding-left: calc(240px + 5vw) !important;
+  }
+}

@@ -1,0 +1,393 @@
+/* ===== WORKFLOW / PROCESS SECTION ===== */
+.workflow {
+  position: relative;
+  background: var(--bg-body);
+}
+
+.workflow-intro {
+  margin-bottom: 60px;
+}
+
+.workflow-title-hollow {
+  -webkit-text-stroke: 1px var(--text-secondary);
+  color: transparent;
+  background: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+}
+
+.workflow-subtitle {
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* --- IDE Container --- */
+.workflow-ide {
+  display: flex;
+  width: 100%;
+  height: 600px;
+  background: var(--bg-terminal);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Left Sidebar --- */
+.wf-sidebar {
+  width: 280px;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.wf-sidebar-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.wf-window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.wf-window-controls span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.wf-window-controls span:nth-child(1) { background: #ff5f57; }
+.wf-window-controls span:nth-child(2) { background: #febc2e; }
+.wf-window-controls span:nth-child(3) { background: #28c840; }
+
+.wf-sidebar-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.wf-step-list {
+  list-style: none;
+  padding: 16px 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.wf-step-list::-webkit-scrollbar {
+  width: 4px;
+}
+.wf-step-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.wf-step-item {
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.wf-step-item:hover {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-primary);
+}
+
+.wf-step-item.active {
+  background: rgba(0, 212, 255, 0.05); /* Cyan subtle bg */
+  color: var(--accent-cyan);
+}
+
+.wf-step-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.wf-step-num {
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+.wf-step-item.active .wf-step-num {
+  opacity: 1;
+}
+
+/* --- Main Pane --- */
+.wf-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Important for flex child truncation */
+}
+
+/* Top Tabs */
+.wf-tabs {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-titlebar);
+  height: 44px; /* Matches sidebar header height roughly */
+}
+
+.wf-tab {
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.wf-tab-icon {
+  color: var(--accent-purple);
+}
+
+.wf-tab.active {
+  background: var(--bg-terminal);
+  color: var(--text-primary);
+  border-top: 2px solid var(--accent-purple);
+  margin-top: -1px; /* Align border */
+}
+
+.wf-tab.inactive {
+  color: var(--text-muted);
+  border-right: 1px solid var(--border-subtle);
+}
+
+.wf-tab-spacer {
+  flex: 1;
+  border-bottom: 1px solid var(--border-subtle);
+  height: 100%;
+}
+
+.wf-encoding {
+  padding: 0 16px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Content Area */
+.wf-content-area {
+  padding: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.wf-breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.wf-breadcrumb .highlight {
+  color: var(--text-primary);
+}
+
+/* Progress Container */
+.wf-progress-container {
+  margin-bottom: 40px;
+}
+
+.wf-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.wf-progress-percent {
+  color: var(--accent-cyan);
+}
+
+.wf-progress-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.wf-progress-fill {
+  height: 100%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Viewport & Scrolling Cards */
+.wf-cards-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden; /* Hide inactive cards */
+}
+
+.wf-cards-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wf-card-wrapper {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center; /* Center the card vertically */
+}
+
+.wf-step-card {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 30px;
+}
+
+.wf-card-header {
+  margin-bottom: 20px;
+}
+
+.wf-card-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.wf-card-title {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.wf-card-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.wf-card-tag {
+  display: inline-block;
+  background: rgba(168, 85, 247, 0.1);
+  color: var(--accent-purple);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.wf-card-features {
+  list-style: none;
+  padding: 0;
+}
+
+.wf-card-features li {
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  display: flex;
+  gap: 10px;
+}
+
+.wf-card-features li::before {
+  content: '>';
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .workflow-ide {
+    flex-direction: column;
+    height: auto;
+    min-height: 500px;
+  }
+  
+  .wf-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    max-height: 200px;
+  }
+
+  .wf-step-list {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .wf-step-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wf-step-item {
+    padding: 12px 20px;
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .wf-step-item.active {
+    background: rgba(0, 212, 255, 0.08);
+    border-bottom-color: var(--accent-cyan);
+  }
+
+  .wf-step-item.active::before {
+    display: none;
+  }
+  
+  .wf-tabs {
+    display: none; /* Hide desktop tabs on mobile to save space */
+  }
+  
+  .wf-content-area {
+    padding: 24px 20px;
+  }
+  
+  .wf-card-title {
+    font-size: 1.5rem;
+  }
+
+  .wf-cards-viewport {
+    min-height: 300px;
+  }
+}
