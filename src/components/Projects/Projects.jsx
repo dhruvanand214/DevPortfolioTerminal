@@ -191,7 +191,7 @@ const Projects = () => {
                 <div className="detail-section">
                   <h4 className="detail-label">KEY_FEATURES</h4>
                   <ul className="terminal-list">
-                    {activeProject.features.map((feature, i) => (
+                    {(activeProject.features ?? []).map((feature, i) => (
                       <li key={i}><span>*</span> {feature}</li>
                     ))}
                   </ul>
@@ -200,7 +200,7 @@ const Projects = () => {
                 <div className="detail-section">
                   <h4 className="detail-label">IMPACT</h4>
                   <div className="impact-grid">
-                    {activeProject.impact.map((stat, i) => (
+                    {(activeProject.impact ?? []).map((stat, i) => (
                       <div key={i} className="impact-card">
                         <div className="impact-value">{stat.value}</div>
                         <div className="impact-label">{stat.label}</div>
@@ -211,11 +211,13 @@ const Projects = () => {
 
                 <div className="detail-section">
                   <h4 className="detail-label">REPOSITORY</h4>
-                  <div className="repo-link">github.com/dhruvanand214/{activeProject.file.replace('.exe', '')}</div>
+                  <div className="repo-link">github.com/dhruvanand214/{activeProject.file?.replace('.exe', '') ?? activeProject.name}</div>
                   <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <a href={activeProject.link} className="btn-view-github" target="_blank" rel="noreferrer">
-                      &gt; VIEW ON GITHUB
-                    </a>
+                    {activeProject.link && (
+                      <a href={activeProject.link} className="btn-view-github" target="_blank" rel="noreferrer">
+                        &gt; VIEW ON GITHUB
+                      </a>
+                    )}
                     {activeProject.liveLink && (
                       <a href={activeProject.liveLink} className="btn-view-github" target="_blank" rel="noreferrer" style={{borderColor: 'var(--accent-cyan)', color: 'var(--accent-cyan)'}}>
                         &gt; LIVE DEMO
