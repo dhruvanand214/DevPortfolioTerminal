@@ -1,0 +1,318 @@
+/* ===== EXPERIENCE SECTION ===== */
+.experience {
+  position: relative;
+  background: var(--bg-body);
+}
+
+.experience-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.experience-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 80px;
+}
+
+.experience-content {
+  width: 100%;
+  padding-top: 20px;
+}
+
+/* Central Stacked Cards Container */
+.experience-stack {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+/* Individual Stacked Card Wrapper */
+.timeline-card-wrapper {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  width: calc(100% - (var(--index) * 20px));
+  margin-left: calc(var(--index) * 20px);
+  margin-top: calc(var(--index) * 48px); /* Approximates the header height so only the topbar is visible */
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+/* Minimized Dock */
+.minimized-dock {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 60px;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.minimized-tile {
+  flex: 1 1 200px; /* Make them nicely side by side */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 48px; /* Same height as header */
+  overflow: hidden;
+  max-width: 300px;
+}
+
+.minimized-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 204, 0.1);
+}
+
+.minimized-tile .timeline-card-header {
+  border-bottom: none;
+  padding: 10px 15px;
+}
+
+.minimized-tile .exp-file {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+/* Timeline Card Design */
+.timeline-card {
+  width: 100%;
+  background: var(--bg-terminal);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-card-wrapper.active .timeline-card {
+  border-color: rgba(0, 255, 159, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 255, 159, 0.05);
+}
+
+/* Card Header (Window Chrome) */
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-titlebar);
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease;
+}
+
+.timeline-card-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.timeline-card-wrapper.active .timeline-card-header {
+  border-bottom-color: rgba(0, 255, 159, 0.2);
+}
+
+.timeline-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.exp-icon {
+  color: var(--accent-green);
+}
+
+.timeline-card-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.exp-period {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-right: 10px;
+}
+
+.window-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 2px;
+  transition: color 0.2s, transform 0.2s;
+  width: 20px;
+  height: 20px;
+}
+
+.window-btn:hover {
+  transform: scale(1.1);
+}
+
+.minimize-btn:hover { color: #febc2e; }
+.maximize-btn:hover { color: #28c840; }
+.close-btn:hover { color: #ff5f57; }
+
+/* Active State Buttons */
+.timeline-card-wrapper.active .maximize-btn {
+  color: #28c840;
+}
+.timeline-card-wrapper:not(.active) .minimize-btn {
+  color: #febc2e;
+}
+
+/* Card Body (Code Editor Style) */
+.timeline-card-body {
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  background: var(--bg-terminal);
+  animation: slideDown 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: top;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.exp-code-line {
+  display: flex;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.exp-line-num {
+  color: rgba(255, 255, 255, 0.15);
+  min-width: 32px;
+  text-align: right;
+  margin-right: 24px;
+  user-select: none;
+  font-size: 0.75rem;
+  padding-top: 2px;
+}
+
+.exp-code-content {
+  flex: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* Syntax Highlighting */
+.syntax-keyword { color: var(--accent-purple); }
+.syntax-function { color: var(--accent-cyan); }
+.syntax-string { color: #fde047; }
+.syntax-value { color: var(--accent-green); }
+.syntax-bracket { color: var(--text-secondary); }
+.syntax-property { color: var(--text-primary); }
+.syntax-comment { color: var(--text-muted); font-style: italic; }
+
+/* Highlight bullets */
+.exp-bullets {
+  margin-top: 15px;
+  padding-left: 56px;
+}
+
+.exp-bullet {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-family: var(--font-sans);
+}
+
+.exp-bullet-icon {
+  color: var(--accent-cyan);
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+}
+
+.exp-bullet .exp-highlight {
+  color: var(--accent-green);
+  font-weight: 500;
+  background: rgba(0, 255, 159, 0.05);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .experience-stack {
+    margin-top: 20px;
+  }
+  
+  .timeline-card-wrapper {
+    /* Less cascade on mobile */
+    width: calc(100% - (var(--index) * 10px));
+    margin-left: calc(var(--index) * 10px);
+  }
+
+  .timeline-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .timeline-card-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .exp-period {
+    margin-right: 0;
+  }
+
+  .exp-line-num {
+    min-width: 20px;
+    margin-right: 12px;
+  }
+  
+  .exp-bullets {
+    padding-left: 0;
+    margin-top: 16px;
+  }
+  
+  .timeline-card-body {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .exp-code-line {
+    font-size: 0.75rem;
+  }
+  
+  .timeline-card-wrapper {
+    /* No cascade on very small screens */
+    width: 100%;
+    margin-left: 0;
+  }
+}

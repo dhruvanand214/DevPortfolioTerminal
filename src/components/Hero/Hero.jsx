@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import TerminalWindow from './TerminalWindow';
+import TerminalWindow from '../TerminalWindow/TerminalWindow';
 import './Hero.css';
 
 const titles = [

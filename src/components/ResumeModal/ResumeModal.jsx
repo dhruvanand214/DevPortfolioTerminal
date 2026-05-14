@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import TerminalWindow from './TerminalWindow';
 import './ResumeModal.css';
+import TerminalWindow from '../TerminalWindow/TerminalWindow';
 
 const ResumeModal = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);

@@ -1,68 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { client } from '../../sanity';
 import './Skills.css';
 
-const skillCategories = [
-  {
-    id: 'frontend',
-    name: 'ls frontend/',
-    title: 'Frontend Development',
-    skills: [
-      { name: 'Angular (14–17)', icon: '🅰️' },
-      { name: 'React.js', icon: '⚛️' },
-      { name: 'TypeScript', icon: '🔷' },
-      { name: 'RxJS', icon: '🔄' },
-      { name: 'Tailwind CSS', icon: '🎨' },
-      { name: 'HTML / CSS / ES6+', icon: '🌐' },
-    ]
-  },
-  {
-    id: 'backend',
-    name: 'ls backend/',
-    title: 'Backend Architecture',
-    skills: [
-      { name: 'Node.js', icon: '🟢' },
-      { name: 'Express.js', icon: '⚡' },
-      { name: 'REST API Design', icon: '🔗' },
-      { name: 'Spring Boot', icon: '🍃' },
-    ]
-  },
-  {
-    id: 'databases',
-    name: 'ls databases/',
-    title: 'Database Systems',
-    skills: [
-      { name: 'MongoDB', icon: '🍃' },
-      { name: 'MySQL', icon: '🐬' },
-      { name: 'PostgreSQL', icon: '🐘' },
-    ]
-  },
-  {
-    id: 'devops',
-    name: 'ls devops-tools/',
-    title: 'DevOps & Tools',
-    skills: [
-      { name: 'Git / GitHub', icon: '📦' },
-      { name: 'Docker', icon: '🐳' },
-      { name: 'Jira', icon: '📋' },
-      { name: 'Postman', icon: '📮' },
-      { name: 'Webpack / Vite', icon: '⚡' },
-    ]
-  },
-  {
-    id: 'testing',
-    name: 'ls testing/',
-    title: 'Quality Assurance',
-    skills: [
-      { name: 'Jasmine', icon: '🧪' },
-      { name: 'Karma', icon: '⚙️' },
-      { name: 'Unit Testing', icon: '✅' },
-      { name: 'Integration Testing', icon: '🔬' },
-    ]
-  },
-];
-
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState(skillCategories[0]);
+  const [skillCategories, setSkillCategories] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const query = '*[_type == "skillCategory"]';
+        const data = await client.fetch(query);
+        if (data && data.length > 0) {
+          setSkillCategories(data);
+          setActiveCategory(data[0]);
+        }
+      } catch (error) {
+        console.error('Error fetching skills:', error);
+      }
+    };
+    fetchSkills();
+  }, []);
+
+  if (skillCategories.length === 0 || !activeCategory) {
+    return (
+      <section className="skills section" id="skills">
+        <div className="container">
+          <div className="section-label">capabilities</div>
+          <h2 className="section-title">
+            Tech <span className="accent">Stack</span>
+          </h2>
+          <p className="skills-subtitle">Loading skills from CMS...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="skills section" id="skills">
@@ -88,8 +60,8 @@ const Skills = () => {
             <div className="skills-categories">
               {skillCategories.map((category) => (
                 <button
-                  key={category.id}
-                  className={`skills-category-btn ${activeCategory.id === category.id ? 'active' : ''}`}
+                  key={category._id}
+                  className={`skills-category-btn ${activeCategory._id === category._id ? 'active' : ''}`}
                   onClick={() => setActiveCategory(category)}
                 >
                   <span className="cmd-prompt">$</span>
@@ -102,11 +74,11 @@ const Skills = () => {
           {/* Right Content - Skill Cards */}
           <div className="skills-content">
             <div className="skills-content-header">
-              <span>{`> Output: ${activeCategory.id}/`}</span>
+              <span>{`> Output: ${activeCategory._id}/`}</span>
             </div>
             
             <div className="skills-content-body">
-              <div className="skills-grid" key={activeCategory.id}>
+              <div className="skills-grid" key={activeCategory._id}>
                 {activeCategory.skills.map((skill) => (
                   <div key={skill.name} className="skill-card">
                     <span className="skill-icon">{skill.icon}</span>

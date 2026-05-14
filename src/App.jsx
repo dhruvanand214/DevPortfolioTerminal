@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Experience from './components/Experience'
-import Projects from './components/Projects'
-import Workflow from './components/Workflow'
-import Contact from './components/Contact'
-import CustomCursor from './components/CustomCursor'
-import Loader from './components/Loader'
-import ScrollToTop from './components/ScrollToTop'
-import MatrixOverlay from './components/MatrixOverlay'
-import Sidebar from './components/Sidebar'
-import SoundToggle from './components/SoundToggle'
-import ResumeModal from './components/ResumeModal'
+import Navbar from './components/Navbar/Navbar'
+import Hero from './components/Hero/Hero'
+import About from './components/About/About'
+import Skills from './components/Skills/Skills'
+import Experience from './components/Experience/Experience'
+import Projects from './components/Projects/Projects'
+import Workflow from './components/Workflow/Workflow'
+import Contact from './components/Contact/Contact'
+import CustomCursor from './components/CustomCursor/CustomCursor'
+import Loader from './components/Loader/Loader'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import MatrixOverlay from './components/MatrixOverlay/MatrixOverlay'
+import Sidebar from './components/Sidebar/Sidebar'
+import SoundToggle from './components/SoundToggle/SoundToggle'
+import ResumeModal from './components/ResumeModal/ResumeModal'
 import './App.css'
 
 function App() {
@@ -21,13 +21,13 @@ function App() {
   const [easterEggActive, setEasterEggActive] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
-  useEffect(() => {
-    if (isResumeOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isResumeOpen]);
+  // useEffect(() => {
+  //   if (isResumeOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'auto';
+  //   }
+  // }, [isResumeOpen]);
 
   useEffect(() => {
     let keyBuffer = '';

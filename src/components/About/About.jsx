@@ -1,4 +1,4 @@
-import TerminalWindow from './TerminalWindow';
+import TerminalWindow from '../TerminalWindow/TerminalWindow';
 import './About.css';
 
 const About = () => {
